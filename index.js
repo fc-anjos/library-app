@@ -1,4 +1,16 @@
-const myLibrary = [];
+function getLibraryFromLocalStorage() {
+  let myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  if (!myLibrary) {
+    myLibrary = [];
+  }
+  return myLibrary;
+}
+
+const myLibrary = getLibraryFromLocalStorage();
+
+function setLibraryOnLocalStorage(myLibrary) {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
 
 function Book(title, author, NPages, finished) {
   const book = {};
@@ -16,10 +28,20 @@ function resetForm() {
   document.getElementById('finished').checked = false;
 }
 
+function ToggleNoBooks(myLibrary) {
+  if (myLibrary.length === 0) {
+    document.getElementById('no-books').style.display = 'block';
+  } else {
+    document.getElementById('no-books').style.display = 'none';
+  }
+}
+
+// eslint-disable-next-line no-unused-vars
 function deleteEntry(bookId) {
   myLibrary.splice(bookId, 1);
   document.getElementById(`book-${bookId}`).remove();
-  ToggleNoBooks();
+  setLibraryOnLocalStorage(myLibrary);
+  ToggleNoBooks(myLibrary);
 }
 
 function DisplayBook(book) {
@@ -40,30 +62,23 @@ function DisplayBook(book) {
     </div>`;
 }
 
-function AddBookToLibrary() {
+
+function AddBookToLibrary(myLibrary) {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const NPages = document.getElementById('n_pages').value;
   const finished = document.getElementById('finished').checked;
   const book = Book(title, author, NPages, finished, author, NPages, finished);
   myLibrary.push(book);
+  setLibraryOnLocalStorage(myLibrary);
   resetForm();
-  ToggleNoBooks();
+  ToggleNoBooks(myLibrary);
   DisplayBook(book);
 }
 
-
-function DisplayAllBooks() {
+function DisplayAllBooks(myLibrary) {
   myLibrary.forEach(DisplayBook);
-  ToggleNoBooks();
-}
-
-function ToggleNoBooks() {
-  if (myLibrary.length === 0) {
-    document.getElementById('no-books').style.display = 'block';
-  } else {
-    document.getElementById('no-books').style.display = 'none';
-  }
+  ToggleNoBooks(myLibrary);
 }
 
 function HideForm() {
@@ -76,10 +91,9 @@ function ShowFormListener() {
   });
 }
 
-
 function BookToLibraryListener() {
   document.getElementById('AddBookToLibrary').addEventListener('click', () => {
-    AddBookToLibrary();
+    AddBookToLibrary(myLibrary);
     HideForm();
   });
 }
@@ -87,5 +101,5 @@ function BookToLibraryListener() {
 document.addEventListener('DOMContentLoaded', () => {
   ShowFormListener();
   BookToLibraryListener();
-  DisplayAllBooks();
+  DisplayAllBooks(myLibrary);
 });
