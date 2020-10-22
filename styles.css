@@ -6,6 +6,7 @@
 h2 {
   color: #333;
 }
+
 .container {
   margin: 0 auto;
   display: flex;
@@ -18,10 +19,16 @@ h2 {
 }
 
 .book-entry {
+  border-bottom: 1px solid #ccc;
   display: flex;
 }
 
-.thead, .tbody{
+.book-entry:last-of-type {
+  border-bottom: none;
+}
+
+.thead,
+.tbody {
   display: flex;
   width: 100%;
 }
@@ -35,10 +42,10 @@ h2 {
 }
 
 .book-entry button {
-	color: inherit;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .book-entry > *,
@@ -50,15 +57,6 @@ h2 {
 .thead {
   font-weight: bold;
   border-bottom: 1px solid #666;
-}
-
-
-.book-entry {
-  border-bottom: 1px solid #ccc;
-}
-
-.book-entry:last-of-type {
-  border-bottom: none;
 }
 
 #no-books {
@@ -104,4 +102,3 @@ h2 {
 #AddBookToLibrary {
   margin-top: 0.6em;
 }
-
