@@ -22,7 +22,7 @@ function DisplayBook(book) {
   const author = `<div>${book.author} </div>`;
   const NPages = `<div>${book.n_pages} </div>`;
   const finished = `<div>${book.finished} </div>`;
-  document.getElementById('tBody').innerHTML
+  document.getElementById('tbody').innerHTML
     += `
     <div class="book-entry">
       ${title}
@@ -58,15 +58,13 @@ function ToggleNoBooks() {
   }
 }
 
-function HideFormListener() {
-  document.getElementById('hideFormBtn').addEventListener('click', () => {
-    document.getElementById('form-container').style.display = 'none';
-  });
+function HideForm() {
+  document.getElementById('form-container').style.display = 'none';
 }
 
 function ShowFormListener() {
   document.getElementById('showFormBtn').addEventListener('click', () => {
-    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('book-form').style.display = 'flex';
   });
 }
 
@@ -74,11 +72,11 @@ function ShowFormListener() {
 function BookToLibraryListener() {
   document.getElementById('AddBookToLibrary').addEventListener('click', () => {
     AddBookToLibrary();
+    HideForm();
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  HideFormListener();
   ShowFormListener();
   BookToLibraryListener();
   DisplayAllBooks();

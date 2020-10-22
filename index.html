@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
@@ -11,7 +10,7 @@
 <body>
  <script src="index.js"></script>
   <div class="container">
-    <h2>Javascript Library</h2>
+    <h2>Your Library</h2>
     <div class="books-container" >
       <div class="thead">
         <div>Title</div>
@@ -26,16 +25,19 @@
       </div>
     </div>
     <button id="showFormBtn">New Book</button>
-    <div id="form-container">
       <form id="book-form">
-        Title: <input type="text" name="title" id="title"><br>
-        Author: <input type="text" name="author" id="author"><br>
-        Number of Pages: <input type="number" name="NPages" id="n_pages"><br><br>
-        Finished?: <input type="checkbox" name="finished" id="finished"><br><br>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title">
+        <label for="author">Author:</label>
+        <input type="text" name="author" id="author">
+        <label for="n_pages">Number of Pages:</label>
+        <input type="number" name="NPages" id="n_pages">
+        <div>
+          <label for="finished">Finished?</label>
+          <input type="checkbox" name="finished" id="finished">
+      </div>
         <input type="button" id="AddBookToLibrary" value="Submit">
       </form>
-    <button id="hideFormBtn">Hide Form</button>
-    </div>
   </div>
 </body>
 </html>

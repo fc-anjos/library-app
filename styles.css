@@ -1,27 +1,31 @@
 * {
-  box-sizing: border-box;
   font-family: 'Cutive Mono', monospace;
 }
 
-.books-container {
+h2 {
+  color: #333;
+}
+.container {
   margin: 0 auto;
-  width: 50%;
-  outline: 1px solid #666;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1024px;
 }
 
+.books-container {
+  border: 1px solid #222;
+}
+
+.book-entry {
+  display: flex;
+}
 
 .thead, .tbody{
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #ccc;
 }
 
-
-.theader {
-}
-
-.tbody > *,
+.book-entry > *,
 .thead > * {
   width: 25%;
   border-left: 1px solid #eee;
@@ -30,20 +34,53 @@
 
 .thead > * {
   font-weight: bold;
+  border-bottom: 1px solid #666;
 }
 
 
-#form-container {
-  display: none;
+.book-entry {
+  border-bottom: 1px solid #ccc;
 }
 
-#no-books,
-.tbody > *,
-.thead > * {
-  text-align: center;
+.book-entry:last-of-type {
+  border-bottom: none;
 }
 
 #no-books {
   color: #666;
   font-style: italic;
+}
+
+#no-books,
+.book-entry > *,
+.thead > * {
+  padding: 5px;
+  text-align: center;
+}
+
+#form-container {
+  margin-top: 20px;
+}
+
+#showFormBtn {
+  margin-top: 1em;
+}
+
+#book-form {
+  display: none;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+#book-form label {
+  margin-top: 0.2em;
+}
+
+#finished {
+  position: relative;
+  top: 4px;
+}
+
+#AddBookToLibrary {
+  margin-top: 0.6em;
 }
