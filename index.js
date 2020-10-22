@@ -18,11 +18,18 @@ function resetForm() {
 
 
 function DisplayBook(book) {
-  document.getElementById('booksContainer').innerHTML
-    += `Title: ${book.title}<br>
-    Author : ${book.author}<br>
-    Number of Pages: ${book.n_pages}<br>
-    Finished?: ${book.finished}<br>`;
+  const title = `<div>${book.title} </div>`;
+  const author = `<div>${book.author} </div>`;
+  const NPages = `<div>${book.n_pages} </div>`;
+  const finished = `<div>${book.finished} </div>`;
+  document.getElementById('tBody').innerHTML
+    += `
+    <div class="book-entry">
+      ${title}
+      ${author}
+      ${NPages}
+      ${finished}
+    </div>`;
 }
 
 function AddBookToLibrary() {
@@ -33,12 +40,22 @@ function AddBookToLibrary() {
   const book = Book(title, author, NPages, finished, author, NPages, finished);
   myLibrary.push(book);
   resetForm();
+  ToggleNoBooks();
   DisplayBook(book);
 }
 
 
 function DisplayAllBooks() {
   myLibrary.forEach(DisplayBook);
+  ToggleNoBooks();
+}
+
+function ToggleNoBooks() {
+  if (myLibrary.length === 0) {
+    document.getElementById('no-books').style.display = 'block';
+  } else {
+    document.getElementById('no-books').style.display = 'none';
+  }
 }
 
 function HideFormListener() {
@@ -63,6 +80,6 @@ function BookToLibraryListener() {
 document.addEventListener('DOMContentLoaded', () => {
   HideFormListener();
   ShowFormListener();
-  BookToLibraryListener()();
+  BookToLibraryListener();
   DisplayAllBooks();
 });

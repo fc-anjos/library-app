@@ -1,7 +1,49 @@
-.booksContainer {
-  height: 100vh;
+* {
+  box-sizing: border-box;
+  font-family: 'Cutive Mono', monospace;
 }
+
+.books-container {
+  margin: 0 auto;
+  width: 50%;
+  outline: 1px solid #666;
+  z-index: 1;
+}
+
+
+.thead, .tbody{
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.theader {
+}
+
+.tbody > *,
+.thead > * {
+  width: 25%;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.thead > * {
+  font-weight: bold;
+}
+
 
 #form-container {
   display: none;
+}
+
+#no-books,
+.tbody > *,
+.thead > * {
+  text-align: center;
+}
+
+#no-books {
+  color: #666;
+  font-style: italic;
 }
