@@ -3,13 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
  <script src="index.js"></script>
   <div class="container">
     <h2>Javascript Library</h2>
+    <div id="booksContainer">
+      &nbsp;
+    </div>
+    <button onclick="ShowForm()">New Book</button>
+    <div id="form-container">
+      <form id="book-form">
+        Title: <input type="text" name="title" id="title"><br>
+        Author: <input type="text" name="author" id="author"><br>
+        Number of Pages: <input type="number" name="NPages" id="n_pages"><br><br>
+        Finished?: <input type="checkbox" name="finished" id="finished"><br><br>
+        <input type="button" onclick="AddBookToLibrary()" value="Submit">
+      </form>
+    <button onclick="HideForm()">Hide Form</button>
+    </div>
   </div>
 </body>
 </html>
