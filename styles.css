@@ -27,7 +27,7 @@ h2 {
 
 .book-entry > *,
 .thead > * {
-  width: 25%;
+  flex: 20% 0 0;
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
 }

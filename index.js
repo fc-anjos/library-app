@@ -16,19 +16,27 @@ function resetForm() {
   document.getElementById('finished').checked = false;
 }
 
+function deleteEntry(bookId) {
+  myLibrary.splice(bookId, 1);
+  document.getElementById(`book-${bookId}`).remove();
+  ToggleNoBooks();
+}
 
 function DisplayBook(book) {
   const title = `<div>${book.title} </div>`;
   const author = `<div>${book.author} </div>`;
   const NPages = `<div>${book.n_pages} </div>`;
   const finished = `<div>${book.finished} </div>`;
+  const id = myLibrary.length - 1;
+  const button = `<button onClick=deleteEntry(${id})> Delete Entry </button>`;
   document.getElementById('tbody').innerHTML
     += `
-    <div class="book-entry">
+    <div class="book-entry" id=book-${id}>
       ${title}
       ${author}
       ${NPages}
       ${finished}
+      ${button}
     </div>`;
 }
 
@@ -59,7 +67,7 @@ function ToggleNoBooks() {
 }
 
 function HideForm() {
-  document.getElementById('form-container').style.display = 'none';
+  document.getElementById('book-form').style.display = 'none';
 }
 
 function ShowFormListener() {
