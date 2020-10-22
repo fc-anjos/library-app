@@ -13,16 +13,16 @@
     <div id="booksContainer">
       &nbsp;
     </div>
-    <button onclick="ShowForm()">New Book</button>
+    <button id="showFormBtn">New Book</button>
     <div id="form-container">
       <form id="book-form">
         Title: <input type="text" name="title" id="title"><br>
         Author: <input type="text" name="author" id="author"><br>
         Number of Pages: <input type="number" name="NPages" id="n_pages"><br><br>
         Finished?: <input type="checkbox" name="finished" id="finished"><br><br>
-        <input type="button" onclick="AddBookToLibrary()" value="Submit">
+        <input type="button" id="AddBookToLibrary" value="Submit">
       </form>
-    <button onclick="HideForm()">Hide Form</button>
+    <button id="hideFormBtn">Hide Form</button>
     </div>
   </div>
 </body>

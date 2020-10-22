@@ -16,6 +16,15 @@ function resetForm() {
   document.getElementById('finished').checked = false;
 }
 
+
+function DisplayBook(book) {
+  document.getElementById('booksContainer').innerHTML
+    += `Title: ${book.title}<br>
+    Author : ${book.author}<br>
+    Number of Pages: ${book.n_pages}<br>
+    Finished?: ${book.finished}<br>`;
+}
+
 function AddBookToLibrary() {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
@@ -28,26 +37,32 @@ function AddBookToLibrary() {
 }
 
 
-function DisplayBook(book) {
-  document.getElementById('booksContainer').innerHTML
-    += `Title: ${book.title}<br>
-    Author : ${book.author}<br>
-    Number of Pages: ${book.n_pages}<br>
-    Finished?: ${book.finished}<br>`;
-}
-
 function DisplayAllBooks() {
   myLibrary.forEach(DisplayBook);
 }
 
-function ShowForm() {
-  document.getElementById('form-container').style.display = 'block';
+function HideFormListener() {
+  document.getElementById('hideFormBtn').addEventListener('click', () => {
+    document.getElementById('form-container').style.display = 'none';
+  });
 }
 
-function HideForm() {
-  document.getElementById('form-container').style.display = 'none';
+function ShowFormListener() {
+  document.getElementById('showFormBtn').addEventListener('click', () => {
+    document.getElementById('form-container').style.display = 'block';
+  });
+}
+
+
+function BookToLibraryListener() {
+  document.getElementById('AddBookToLibrary').addEventListener('click', () => {
+    AddBookToLibrary();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  HideFormListener();
+  ShowFormListener();
+  BookToLibraryListener()();
   DisplayAllBooks();
 });
