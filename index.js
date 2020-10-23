@@ -44,19 +44,21 @@ function deleteEntry(bookId) {
   ToggleNoBooks(myLibrary);
 }
 
+function ToggleReadMessage(bookId) {
+  const message = myLibrary[bookId].finished ? 'Mark as unread' : 'Mark as read';
+  document.getElementById(`finished-toggle-${bookId}`).innerHTML = message;
+}
+
+// eslint-disable-next-line no-unused-vars
 function ToggleRead(bookId) {
   myLibrary[bookId].finished = !myLibrary[bookId].finished;
   setLibraryOnLocalStorage(myLibrary);
   ToggleReadMessage(bookId);
 }
 
-function ToggleReadMessage(bookId) {
-  const message = myLibrary[bookId].finished ? 'Mark as unread' : 'Mark as read';
-  document.getElementById(`finished-toggle-${bookId}`).innerHTML = message;
-}
 
 function DisplayBook({
-  title, author, NPages, finished,
+  title, author, NPages,
 }) {
   const id = myLibrary.length - 1;
   const deleteBtn = `<button class="entryBtn" onClick=deleteEntry(${id})> Delete Entry
