@@ -44,20 +44,22 @@ function deleteEntry(bookId) {
   ToggleNoBooks(myLibrary);
 }
 
-function DisplayBook(book) {
-  const title = `<div>${book.title} </div>`;
-  const author = `<div>${book.author} </div>`;
-  const NPages = `<div>${book.n_pages} </div>`;
-  const finished = `<div>${book.finished} </div>`;
+function DisplayBook({
+  title, author, NPages, finished,
+}) {
+  const title_tag = `<div>${title} </div>`;
+  const author_tag = `<div>${author} </div>`;
+  const NPages_tag = `<div>${NPages} </div>`;
+  const finished_tag = `<div>${finished} </div>`;
   const id = myLibrary.length - 1;
   const button = `<button onClick=deleteEntry(${id})> Delete Entry </button>`;
   document.getElementById('tbody').innerHTML
     += `
     <div class="book-entry" id=book-${id}>
-      ${title}
-      ${author}
-      ${NPages}
-      ${finished}
+      ${title_tag}
+      ${author_tag}
+      ${NPages_tag}
+      ${finished_tag}
       ${button}
     </div>`;
 }
@@ -73,7 +75,7 @@ function AddBookToLibrary(myLibrary) {
   setLibraryOnLocalStorage(myLibrary);
   resetForm();
   ToggleNoBooks(myLibrary);
-  DisplayBook(book);
+  DisplayBook({ ...book });
 }
 
 function DisplayAllBooks(myLibrary) {
