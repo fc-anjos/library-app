@@ -25,6 +25,11 @@ h2 {
   height: 2em;
 }
 
+
+#no-books {
+  padding: 5px;
+}
+
 .book-entry:last-of-type {
   border-bottom: none;
 }
