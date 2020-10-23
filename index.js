@@ -16,7 +16,7 @@ function Book(title, author, NPages, finished) {
   const book = {};
   book.title = title;
   book.author = author;
-  book.n_pages = NPages;
+  book.NPages = NPages;
   book.finished = finished;
   return book;
 }
@@ -24,7 +24,7 @@ function Book(title, author, NPages, finished) {
 function resetForm() {
   document.getElementById('title').value = '';
   document.getElementById('author').value = '';
-  document.getElementById('n_pages').value = '';
+  document.getElementById('NPages').value = '';
   document.getElementById('finished').checked = false;
 }
 
@@ -44,23 +44,39 @@ function deleteEntry(bookId) {
   ToggleNoBooks(myLibrary);
 }
 
+function ToggleRead(bookId) {
+  myLibrary[bookId].finished = !myLibrary[bookId].finished;
+  document.getElementById(`finished-${bookId}`).innerHTML = myLibrary[bookId].finished;
+  setLibraryOnLocalStorage(myLibrary);
+}
+
 function DisplayBook({
   title, author, NPages, finished,
 }) {
-  const title_tag = `<div>${title} </div>`;
-  const author_tag = `<div>${author} </div>`;
-  const NPages_tag = `<div>${NPages} </div>`;
-  const finished_tag = `<div>${finished} </div>`;
   const id = myLibrary.length - 1;
-  const button = `<button onClick=deleteEntry(${id})> Delete Entry </button>`;
+  const deleteBtn = `<div class="entryField deleteContainer">
+                      <button class="deleteEntry entryBtn"
+                      onClick=deleteEntry(${id})>
+                        Delete Entry
+                      </button>
+                    </div>`;
+  const toggleReadBtn = `<button class="toggleRead entryBtn" onClick=ToggleRead(${id})> Mark as read </button>`;
+
+  const titleTag = `<div class="entryText entryField">${title} </div>`;
+  const authorTag = `<div class="entryText entryField">${author} </div>`;
+  const NPagesTag = `<div class="entryText entryField">${NPages} </div>`;
+  const finishedTag = `<div class="finishedContainer entryField">
+                          <span id="finished-${id}">${finished}</span>
+                          ${toggleReadBtn}
+                       </div>`;
   document.getElementById('tbody').innerHTML
     += `
     <div class="book-entry" id=book-${id}>
-      ${title_tag}
-      ${author_tag}
-      ${NPages_tag}
-      ${finished_tag}
-      ${button}
+      ${titleTag}
+      ${authorTag}
+      ${NPagesTag}
+      ${finishedTag}
+      ${deleteBtn}
     </div>`;
 }
 
@@ -68,9 +84,9 @@ function DisplayBook({
 function AddBookToLibrary(myLibrary) {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
-  const NPages = document.getElementById('n_pages').value;
+  const NPages = document.getElementById('NPages').value;
   const finished = document.getElementById('finished').checked;
-  const book = Book(title, author, NPages, finished, author, NPages, finished);
+  const book = Book(title, author, NPages, finished);
   myLibrary.push(book);
   setLibraryOnLocalStorage(myLibrary);
   resetForm();
