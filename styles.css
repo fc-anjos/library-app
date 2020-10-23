@@ -21,7 +21,8 @@ h2 {
 .book-entry {
   border-bottom: 1px solid #ccc;
   display: flex;
-  height: 5em;
+  align-items: center;
+  height: 2em;
 }
 
 .book-entry:last-of-type {
@@ -108,30 +109,10 @@ h2 {
   padding: 0;
 }
 
-.entryBtn {
-  width: calc(100% - 20px);
-}
-
 .entryText {
   align-items: center;
   height: 100%;
-  line-height: 4.5em;
-}
-
-.toggleRead {
-  height: 2em;
-  padding: 0;
-  align-self: center;
-}
-
-.entryField {
-  padding: 5px 0 5px 0;
-}
-
-.finishedContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  line-height: 2.1em;
 }
 
 .deleteContainer {

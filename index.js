@@ -46,29 +46,27 @@ function deleteEntry(bookId) {
 
 function ToggleRead(bookId) {
   myLibrary[bookId].finished = !myLibrary[bookId].finished;
-  document.getElementById(`finished-${bookId}`).innerHTML = myLibrary[bookId].finished;
   setLibraryOnLocalStorage(myLibrary);
+  ToggleReadMessage(bookId);
+}
+
+function ToggleReadMessage(bookId) {
+  const message = myLibrary[bookId].finished ? 'Mark as unread' : 'Mark as read';
+  document.getElementById(`finished-toggle-${bookId}`).innerHTML = message;
 }
 
 function DisplayBook({
   title, author, NPages, finished,
 }) {
   const id = myLibrary.length - 1;
-  const deleteBtn = `<div class="entryField deleteContainer">
-                      <button class="deleteEntry entryBtn"
-                      onClick=deleteEntry(${id})>
-                        Delete Entry
-                      </button>
-                    </div>`;
-  const toggleReadBtn = `<button class="toggleRead entryBtn" onClick=ToggleRead(${id})> Mark as read </button>`;
-
-  const titleTag = `<div class="entryText entryField">${title} </div>`;
-  const authorTag = `<div class="entryText entryField">${author} </div>`;
-  const NPagesTag = `<div class="entryText entryField">${NPages} </div>`;
-  const finishedTag = `<div class="finishedContainer entryField">
-                          <span id="finished-${id}">${finished}</span>
-                          ${toggleReadBtn}
-                       </div>`;
+  const deleteBtn = `<button class="entryBtn" onClick=deleteEntry(${id})> Delete Entry
+                      </button>`;
+  const toggleReadBtn = `<button class="entryBtn" onClick=ToggleRead(${id}) id="finished-toggle-${id}"></button>`;
+  const titleTag = `<div class="entryText">${title} </div>`;
+  const authorTag = `<div class="entryText">${author} </div>`;
+  const NPagesTag = `<div class="entryText">${NPages} </div>`;
+  const finishedTag = `<div>${toggleReadBtn}</div>`;
+  const deleteTag = `<div>${deleteBtn}</div>`;
   document.getElementById('tbody').innerHTML
     += `
     <div class="book-entry" id=book-${id}>
@@ -76,8 +74,9 @@ function DisplayBook({
       ${authorTag}
       ${NPagesTag}
       ${finishedTag}
-      ${deleteBtn}
+      ${deleteTag}
     </div>`;
+  ToggleReadMessage(id);
 }
 
 
